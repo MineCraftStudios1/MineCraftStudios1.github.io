@@ -16,6 +16,7 @@
       overflow: hidden;
       background-color: #000;
       font-family: 'Roboto', sans-serif;
+      position: relative; /* 添加相对定位 */
     }
     .welcome-text {
       position: absolute;
@@ -32,6 +33,16 @@
       left: 0;
       z-index: 0;
     }
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.2); /* 设置背景颜色为半透明白色 */
+      text-align: center;
+      padding: 10px 0;
+      color: #000;
+      font-size: 12px;
+    }
   </style>
 </head>
 <body>
@@ -39,6 +50,9 @@
     <h1>Welcome to Pixel Forge Studio</h1>
   </div>
   <canvas id="space"></canvas>
+  <div class="footer">
+    copyright 2022-2023 pixel studio@minecraftstudios1.github.io
+  </div>
   <script>
     const canvas = document.getElementById('space');
     const context = canvas.getContext('2d');
@@ -55,7 +69,7 @@
         y: Math.random() * canvas.height,
         radius: Math.random() * 2,
         color: 'white',
-        speed: Math.random() * 2 + 0.1, // 不同速度
+        speed: Math.random() * 2 + 0.1,
       });
     }
 
@@ -73,10 +87,10 @@
 
     function updateStars() {
       for (let i = 0; i < starCount; i++) {
-        stars[i].y -= stars[i].speed; // 向上移动
+        stars[i].y -= stars[i].speed;
         if (stars[i].y < 0) {
-          stars[i].y = canvas.height; // 当星星移出画布上边界时，重新出现在下方
-          stars[i].x = Math.random() * canvas.width; // 随机横坐标
+          stars[i].y = canvas.height;
+          stars[i].x = Math.random() * canvas.width;
         }
       }
     }
