@@ -56,7 +56,6 @@
         radius: Math.random() * 2,
         color: 'white',
         speed: Math.random() * 2 + 0.1, // 不同速度
-        direction: Math.random() > 0.5 ? 1 : -1 // 随机方向
       });
     }
 
@@ -74,10 +73,10 @@
 
     function updateStars() {
       for (let i = 0; i < starCount; i++) {
-        stars[i].y += stars[i].speed * stars[i].direction;
-        if (stars[i].y > canvas.height || stars[i].y < 0) {
-          stars[i].y = canvas.height / 2;
-          stars[i].x = Math.random() * canvas.width;
+        stars[i].y -= stars[i].speed; // 向上移动
+        if (stars[i].y < 0) {
+          stars[i].y = canvas.height; // 当星星移出画布上边界时，重新出现在下方
+          stars[i].x = Math.random() * canvas.width; // 随机横坐标
         }
       }
     }
