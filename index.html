@@ -3,8 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -15,7 +13,6 @@
       height: 100vh;
       overflow: hidden;
       background-color: #000;
-      font-family: 'Roboto', sans-serif;
     }
     .welcome-text {
       position: absolute;
@@ -40,7 +37,52 @@
   </div>
   <canvas id="space"></canvas>
   <script>
-    // ...（前面的 JavaScript 代码保持不变）
+    const canvas = document.getElementById('space');
+    const context = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stars = [];
+    const starCount = 1000;
+
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random(),
+        color: 'white'
+      });
+    }
+
+    function drawStars() {
+      context.fillStyle = '#000';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < starCount; i++) {
+        const star = stars[i];
+        context.beginPath();
+        context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        context.fillStyle = star.color;
+        context.fill();
+      }
+    }
+
+    function updateStars() {
+      for (let i = 0; i < starCount; i++) {
+        stars[i].x += 0.3;
+        if (stars[i].x > canvas.width) {
+          stars[i].x = 0;
+        }
+      }
+    }
+
+    function animate() {
+      drawStars();
+      updateStars();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
