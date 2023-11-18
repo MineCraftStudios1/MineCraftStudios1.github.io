@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
@@ -13,6 +15,7 @@
       height: 100vh;
       overflow: hidden;
       background-color: #000;
+      font-family: 'Roboto', sans-serif;
     }
     .welcome-text {
       position: absolute;
@@ -50,8 +53,9 @@
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        radius: Math.random(),
-        color: 'white'
+        radius: Math.random() * 2,
+        color: 'white',
+        speed: Math.random() * 2 + 0.1  // 不同速度
       });
     }
 
@@ -69,9 +73,10 @@
 
     function updateStars() {
       for (let i = 0; i < starCount; i++) {
-        stars[i].x += 0.3;
+        stars[i].x += stars[i].speed;
         if (stars[i].x > canvas.width) {
           stars[i].x = 0;
+          stars[i].y = Math.random() * canvas.height;
         }
       }
     }
