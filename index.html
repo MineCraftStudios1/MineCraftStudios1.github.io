@@ -7,45 +7,82 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #000;
+      height: 100vh;
       overflow: hidden;
+      background-color: #000;
     }
-    #welcome-text {
-      font-size: 3em;
-      color: #fff;
-      text-align: center;
+    .welcome-text {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      font-size: 2em;
+      color: #fff;
       z-index: 1;
     }
-    #stars {
-      background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
-      animation: animate 50s linear infinite;
+    canvas {
       position: absolute;
-      width: 100%;
-      height: 100%;
+      top: 0;
+      left: 0;
       z-index: 0;
-    }
-    @keyframes animate {
-      from {
-        background-position: 0 0;
-      }
-      to {
-        background-position: 1000px 0, 0 2000px, 1000px 2000px, 2000px 1000px;
-      }
     }
   </style>
 </head>
 <body>
-  <div id="stars"></div>
-  <div id="welcome-text">
+  <div class="welcome-text">
     <h1>Welcome to Pixel Forge Studio</h1>
   </div>
+  <canvas id="space"></canvas>
+  <script>
+    const canvas = document.getElementById('space');
+    const context = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let stars = [];
+    const starCount = 1000;
+
+    for (let i = 0; i < starCount; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random(),
+        color: 'white'
+      });
+    }
+
+    function drawStars() {
+      context.fillStyle = '#000';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < starCount; i++) {
+        const star = stars[i];
+        context.beginPath();
+        context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+        context.fillStyle = star.color;
+        context.fill();
+      }
+    }
+
+    function updateStars() {
+      for (let i = 0; i < starCount; i++) {
+        stars[i].x += 0.3;
+        if (stars[i].x > canvas.width) {
+          stars[i].x = 0;
+        }
+      }
+    }
+
+    function animate() {
+      drawStars();
+      updateStars();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 </body>
 </html>
