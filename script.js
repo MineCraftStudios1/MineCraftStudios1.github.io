@@ -19,7 +19,10 @@ for (let i = 0; i < starCount; i++) {
 }
 
 function drawStars() {
-  context.fillStyle = '#000';
+  const gradient = context.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, '#330066'); // 深紫色
+  gradient.addColorStop(1, '#000033'); // 深蓝色
+  context.fillStyle = gradient; // 设置渐变为星空背景色
   context.fillRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < starCount; i++) {
     const star = stars[i];
