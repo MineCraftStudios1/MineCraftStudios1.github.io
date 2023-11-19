@@ -31,6 +31,10 @@ function drawStars() {
     context.fillStyle = `rgba(255, 255, 255, ${star.opacity})`; // 使用随机透明度
     context.fill();
   }
+  context.save()
+
+  context.fillStyle = "#000000";
+  context.fillRect(0, 0, canvas.width, 100);
 }
 
 function updateStars() {
