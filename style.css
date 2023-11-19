@@ -13,7 +13,7 @@
       align-items: center;
       height: 100vh;
       overflow: hidden;
-      background: linear-gradient(135deg, #2b1e78, #603cba);
+      background-color: rgba(0, 0, 0, 0);
       font-family: 'Roboto', sans-serif;
       position: relative;
     }
@@ -47,7 +47,7 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(65, 105, 225, 0.5);
       text-align: center;
       padding: 10px 0;
       color: #fff;
