@@ -20,8 +20,8 @@ for (let i = 0; i < starCount; i++) {
 
 function drawStars() {
   const gradient = context.createLinearGradient(0, 0, 0, canvas.height);
-  gradient.addColorStop(0, '#6a5acd'); // 深紫色
-  gradient.addColorStop(1, '#000033'); // 深蓝色
+  gradient.addColorStop(colorStop, '#6a5acd'); // 根据 colorStop 添加颜色停止位置
+  gradient.addColorStop((colorStop + 0.5) % 1, '#000033'); // 设置第二个颜色停止位置，产生循环变化
   context.fillStyle = gradient; // 设置渐变为星空背景色
   context.fillRect(0, 0, canvas.width, canvas.height);
   for (let i = 0; i < starCount; i++) {
@@ -47,9 +47,17 @@ function updateStars() {
   }
 }
 
+let colorStop = 0; // 初始颜色停止位置
+
+function updateColorStop() {
+  colorStop += 0.001; // 可以调整颜色变化的速度
+  colorStop %= 1; // 保证颜色停止位置在 0 到 1 之间循环
+}
+
 function animate() {
   drawStars();
   updateStars();
+  updateColorStop(); // 更新颜色停止位置
   requestAnimationFrame(animate);
 }
 
