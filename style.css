@@ -41,7 +41,7 @@ body {
 
 .button {
   position: absolute;
-  top: calc(50% + 1em);
+  top: calc(50% + 2em);
   left: 50%;
   transform: translateX(-50%);
   padding: 0.5em 1em;
