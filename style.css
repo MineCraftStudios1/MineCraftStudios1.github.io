@@ -54,6 +54,10 @@ body {
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
 }
 
+a.link {
+  text-decoration: none;
+}
+
 canvas {
   position: absolute;
   top: 0;
