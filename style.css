@@ -56,6 +56,19 @@ body {
   font-color: #fff
 }
 
+.button::before{
+  content: ""
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  background: linear-gradient(to right,#03a9f4, #f441a5, #ffeb3b, #09a8f4);
+  background-size: 400%;
+  border-radius: 50px;
+  z-index: -1;
+  filter: blur(20px);
+}
 a.link {
   text-decoration: none;
   color: white
