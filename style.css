@@ -54,7 +54,7 @@ body {
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.2);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
   font-color: #fff;
-  z-index: 1
+  z-index: 1;
 }
 
 .button::before{
@@ -73,16 +73,16 @@ body {
 
 .line {
   position: absolute;
-  top: calc(25% + 10em)
+  top: calc(25% + 10em);
   left: 50%;
   font-size: 1em;
   color: #fff;
-  z-index: 1
+  z-index: 1;
 }
 
 a.link {
   text-decoration: none;
-  color: white
+  color: white;
 }
 
 canvas {
