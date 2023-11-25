@@ -73,7 +73,7 @@ body {
 
 .line {
   position: absolute;
-  top: calc(50% + 10em)
+  top: calc(25% + 10em)
   left: 50%;
   font-size: 1em;
   color: #fff;
