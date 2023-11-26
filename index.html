@@ -6,9 +6,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Studio | Pixel Forge</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="icon" href="path_to_your_folder/logo.ico" type="image/x-icon">
+  <style>
+      @font-face {
+        font-family: 'Pixel';
+        src: url('pixel-font.woff') format('woff'),
+             url('pixel-font.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0);
+        font-family: 'Roboto', sans-serif;
+        position: relative;
+      }
+
+      .header {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-family: 'Pixel', sans-serif;
+        font-size: 1em;
+        color: #fff;
+        z-index: 1;
+      }
+
+      .welcome-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 2em;
+        color: #fff;
+        z-index: 1;
+      }
+
+      .button {
+        position: absolute;
+        top: calc(50% + 2em);
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 0.5em 1em;
+        background: linear-gradient(to right, #00b0ff, #9500ff);
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4), 0 0 40px rgba(0, 255, 255, 0.2);
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      font-color: #fff;
+      z-index: 1;
+    }
+
+    .button::before{
+      content: ""
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      bottom: -5px;
+      right: -5px;
+      background: linear-gradient(to right,#03a9f4, #f441a5, #ffeb3b, #09a8f4);
+      background-size: 400%;
+      border-radius: 50px;
+      z-index: -1;
+      filter: blur(20px);
+    }
+
+    .line {
+      position: absolute;
+      top: calc(5% + 10em);
+      left: 50%;
+      font-size: 1em;
+      color: #fff;
+      z-index: 1;
+    }
+
+    a.link {
+      text-decoration: none;
+      color: white;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(25, 25, 112, 0.6);
+      text-align: center;
+      padding: 10px 0;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 50px;
+      height: 50px;
+      transform: scale(1.5);
+    }
+
+  </style>
 </head>
 
 <body>
@@ -27,7 +141,59 @@
     copyright 2022-2023 pixel studio@minecraftstudios1.github.io
   </div>
   <img class="logo" src="PF-Logo.png" alt="Pixel Forge Logo">
-  <script src="script.js"></script>
+  <script>
+      const canvas = document.getElementById('space');
+      const context = canvas.getContext('2d');
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let stars = [];
+      const starCount = 1000;
+
+      for (let i = 0; i < starCount; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: 2,
+          color: 'white',
+          speed: Math.random() * 2 + 0.1,
+          opacity: Math.random()
+        });
+      }
+
+      function drawStars() {
+        context.fillStyle = '#000000';
+        context.fillRect(0, 0, canvas.width, canvas.height);
+  
+        for (let i = 0; i < starCount; i++) {
+          const star = stars[i];
+          context.beginPath();
+          context.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          context.fillStyle = `rgba(255, 255, 255, ${star.opacity})`;
+          context.fill();
+        }
+      }
+
+      function updateStars() {
+        for (let i = 0; i < starCount; i++) {
+          stars[i].y -= stars[i].speed;
+          if (stars[i].y < 0) {
+            stars[i].y = canvas.height;
+            stars[i].x = Math.random() * canvas.width;
+          }
+        }
+      }
+
+      function animate() {
+        drawStars();
+        updateStars();
+        requestAnimationFrame(animate);
+      }
+
+    animate();
+
+  </script>
 </body>
 
 </html>
